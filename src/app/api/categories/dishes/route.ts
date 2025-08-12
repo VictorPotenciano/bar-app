@@ -8,10 +8,11 @@ export async function GET() {
         dishes: true,
       },
     });
-    if (!categoriesWithProducts || categoriesWithProducts.length === 0) {
-      console.log("No se encontraron categorías con productos.");
-      return null;
-    }
+    if (!categoriesWithProducts)
+      return NextResponse.json(
+        { message: "Categorias con platos no encontrados" },
+        { status: 404 }
+      );
 
     const result = categoriesWithProducts.map((category) => ({
       id: category.id,
