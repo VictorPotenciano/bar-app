@@ -16,10 +16,11 @@ export async function GET() {
       },
     });
 
-    if (!dailyMenu || dailyMenu.dishes.length === 0) {
-      console.log("No se encontró ningún menú diario.");
-      return null;
-    }
+    if (!dailyMenu)
+      return NextResponse.json(
+        { message: "Menu diario no encontrado" },
+        { status: 404 }
+      );
 
     const formattedDate = dailyMenu.date.toISOString().split("T")[0];
 
