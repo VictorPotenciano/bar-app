@@ -13,7 +13,7 @@ export async function getDish(id: number) {
     return response.data;
   } catch (error) {
     if (!axios.isCancel(error)) {
-      console.error("Error fetching categories:", error);
+      console.error("Error fetching dishes:", error);
     }
     return null;
   }

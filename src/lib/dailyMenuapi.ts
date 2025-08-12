@@ -13,7 +13,7 @@ export async function getDailyMenu() {
     return response.data;
   } catch (error) {
     if (!axios.isCancel(error)) {
-      console.error("Error fetching times:", error);
+      console.error("Error fetching daily menu:", error);
     }
     return [];
   }

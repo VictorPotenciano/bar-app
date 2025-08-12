@@ -164,18 +164,20 @@ const ContactSection = () => {
                   <div className="p-2 bg-blue-900/30 rounded-lg mr-4">
                     <Clock className="w-5 h-5 text-blue-300" />
                   </div>
-                  <div>
-                    <h4 className="font-medium text-white mb-1">Horario</h4>
-                    <ul className="text-blue-100 space-y-1">
-                      <li className="flex justify-between">
+                  <div className="w-full max-w-md">
+                    <h4 className="font-medium text-white mb-2 text-lg sm:text-xl md:text-2xl">
+                      Horario
+                    </h4>
+                    <ul className="text-blue-100 space-y-2 text-sm sm:text-base">
+                      <li className="flex flex-col sm:flex-row sm:justify-between">
                         <span>Lunes - Jueves:</span>
                         <span className="font-medium">17:00 - 01:00</span>
                       </li>
-                      <li className="flex justify-between">
+                      <li className="flex flex-col sm:flex-row sm:justify-between">
                         <span>Viernes - Sábado:</span>
                         <span className="font-medium">17:00 - 02:00</span>
                       </li>
-                      <li className="flex justify-between">
+                      <li className="flex flex-col sm:flex-row sm:justify-between">
                         <span>Domingo:</span>
                         <span className="font-medium">17:00 - 00:00</span>
                       </li>

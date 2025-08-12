@@ -11,7 +11,7 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15, 
+      staggerChildren: 0.15,
       delayChildren: 0.2,
     },
   },
@@ -96,40 +96,6 @@ const AboutSection = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          {/* Imagen */}
-          <div className="lg:w-1/2 relative">
-            <motion.div
-              variants={imageVariants}
-              className="relative h-96 w-full rounded-xl overflow-hidden border-2 border-blue-900/50 group"
-            >
-              <Image
-                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                alt="Bar interior"
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <motion.div
-                style={{ x: xParallax }} // Parallax horizontal
-                className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/30 via-transparent to-transparent"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
-            </motion.div>
-
-            {/* Badge de experiencia */}
-            <motion.div
-              variants={experienceBadgeVariants}
-              className="absolute -bottom-6 -left-6 bg-blue-600 p-5 text-white shadow-xl rounded-xl hidden lg:flex items-center"
-            >
-              <Calendar className="w-8 h-8 mr-3" />
-              <div>
-                <p className="font-bold text-lg">+10 años</p>
-                <p className="text-blue-100 text-sm">de excelencia</p>
-              </div>
-            </motion.div>
-          </div>
-
           {/* Texto */}
           <div className="lg:w-1/2">
             <motion.div
@@ -209,6 +175,39 @@ const AboutSection = () => {
                   </p>
                 </motion.div>
               </motion.div>
+            </motion.div>
+          </div>
+          {/* Imagen */}
+          <div className="lg:w-1/2 w-full relative">
+            <motion.div
+              variants={imageVariants}
+              className="relative h-96 w-full rounded-xl overflow-hidden border-2 border-blue-900/50 group"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                alt="Bar interior"
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <motion.div
+                style={{ x: xParallax }} // Parallax horizontal
+                className="absolute inset-0 bg-gradient-to-r from-[#0a0f1a]/30 via-transparent to-transparent"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+            </motion.div>
+
+            {/* Badge de experiencia */}
+            <motion.div
+              variants={experienceBadgeVariants}
+              className="absolute -bottom-6 -left-6 bg-blue-600 p-5 text-white shadow-xl rounded-xl hidden lg:flex items-center"
+            >
+              <Calendar className="w-8 h-8 mr-3" />
+              <div>
+                <p className="font-bold text-lg">+10 años</p>
+                <p className="text-blue-100 text-sm">de excelencia</p>
+              </div>
             </motion.div>
           </div>
         </div>

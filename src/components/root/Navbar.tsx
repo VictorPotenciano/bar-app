@@ -1,14 +1,26 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Martini, Menu } from "lucide-react";
+import { Martini, Menu, X } from "lucide-react"; // Añadido X para el ícono de cerrar
 import { usePathname } from "next/navigation";
+import { useState } from "react"; // Añadido para manejar el estado
 
 const Navbar = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Estado para el menú móvil
 
-  // Función para generar el href correcto dependiendo de si estamos en la home o no
+  // Función para alternar el menú móvil
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Función para cerrar el menú móvil al hacer clic en un enlace
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
+  // Función para generar el href correcto dependiendo de la página
   const getSectionHref = (sectionId: string) => {
     return isHomePage ? `#${sectionId}` : `/#${sectionId}`;
   };
@@ -79,17 +91,86 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Botón de reserva y menú móvil */}
+        {/* Botón de menú móvil */}
         <div className="flex items-center gap-4">
           <Button
             variant="ghost"
             size="icon"
             className="md:hidden text-white hover:bg-blue-900/50"
+            onClick={toggleMobileMenu}
           >
-            <Menu className="w-6 h-6" />
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </Button>
         </div>
       </div>
+
+      {/* Menú móvil */}
+      {isMobileMenuOpen && (
+        <nav className="md:hidden bg-[#0a0f1a]/95 border-t border-blue-900/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col space-y-4">
+            <Link
+              href="/"
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Inicio
+            </Link>
+            <Link
+              href={getSectionHref("nosotros")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Sobre Nosotros
+            </Link>
+            <Link
+              href={getSectionHref("menu")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Menú
+            </Link>
+            <Link
+              href="/carta"
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Carta
+            </Link>
+            <Link
+              href={getSectionHref("eventos")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Eventos
+            </Link>
+            <Link
+              href={getSectionHref("galeria")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Galería
+            </Link>
+            <Link
+              href={getSectionHref("reservas")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Reservas
+            </Link>
+            <Link
+              href={getSectionHref("contacto")}
+              className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-base font-medium transition-colors"
+              onClick={closeMobileMenu}
+            >
+              Contacto
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 };
