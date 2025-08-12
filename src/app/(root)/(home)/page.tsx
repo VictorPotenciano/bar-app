@@ -5,7 +5,7 @@ import ContactSection from "@/components/root/home/ContactSection";
 import EventsSection from "@/components/root/home/EventsSection";
 import GallerySection from "@/components/root/home/GallerySection";
 import HeroSection from "@/components/root/home/HeroSection";
-import MenuSection from "@/components/root/home/MenuSection";
+import MenuSection from "@/components/root/home/menu/MenuSection";
 import ReservationSection from "@/components/root/home/ReservationSection";
 import { useEffect, useState } from "react";
 import { DailyMenu } from "../../../../typing";
