@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Martini, Menu, X } from "lucide-react"; // Añadido X para el ícono de cerrar
+import { Martini, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
-import { useState } from "react"; // Añadido para manejar el estado
+import { useState } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // Estado para el menú móvil
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Función para alternar el menú móvil
   const toggleMobileMenu = () => {
@@ -40,7 +40,7 @@ const Navbar = () => {
         </Link>
 
         {/* Navegación desktop */}
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden lg:flex space-x-6">
           <Link
             href="/"
             className="text-blue-100 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors"
@@ -96,7 +96,7 @@ const Navbar = () => {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-white hover:bg-blue-900/50"
+            className="lg:hidden text-white hover:bg-blue-900/50"
             onClick={toggleMobileMenu}
           >
             {isMobileMenuOpen ? (
@@ -110,7 +110,7 @@ const Navbar = () => {
 
       {/* Menú móvil */}
       {isMobileMenuOpen && (
-        <nav className="md:hidden bg-[#0a0f1a]/95 border-t border-blue-900/50">
+        <nav className="lg:hidden bg-[#0a0f1a]/95 border-t border-blue-900/50">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col space-y-4">
             <Link
               href="/"

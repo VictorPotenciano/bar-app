@@ -16,25 +16,25 @@ interface MenuSectionProps {
 
 // Variantes para el contenedor principal (animación de aparición escalonada)
 const containerVariants: Variants = {
-  hidden: { opacity: 0 }, 
+  hidden: { opacity: 0 },
   visible: {
-    opacity: 1, 
+    opacity: 1,
     transition: {
-      staggerChildren: 0.25, 
-      delayChildren: 0.4, 
+      staggerChildren: 0.25,
+      delayChildren: 0.4,
     },
   },
 };
 
 // Variantes para los encabezados (animación de escala y fade)
 const headerVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.95 }, 
+  hidden: { opacity: 0, scale: 0.95 },
   visible: {
-    opacity: 1, 
-    scale: 1, 
+    opacity: 1,
+    scale: 1,
     transition: {
-      type: "tween", 
-      ease: "easeInOut", 
+      type: "tween",
+      ease: "easeInOut",
       duration: 0.7,
     },
   },
@@ -42,14 +42,14 @@ const headerVariants: Variants = {
 
 // Variantes para las tarjetas de platos (efecto 3D de rotación)
 const dishCardVariants: Variants = {
-  hidden: { opacity: 0, rotateY: 15 }, 
+  hidden: { opacity: 0, rotateY: 15 },
   visible: {
-    opacity: 1, 
-    rotateY: 0, 
+    opacity: 1,
+    rotateY: 0,
     transition: {
-      type: "tween", 
-      ease: "easeOut", 
-      duration: 0.8, 
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.8,
     },
   },
 };
@@ -57,16 +57,16 @@ const dishCardVariants: Variants = {
 // Variantes para imágenes (efecto de zoom y desenfoque)
 const imageVariants: Variants = {
   hidden: {
-    scale: 1.05, 
+    scale: 1.05,
     filter: "blur(5px)",
   },
   visible: {
-    scale: 1, 
-    filter: "blur(0px)", 
+    scale: 1,
+    filter: "blur(0px)",
     transition: {
-      type: "tween", 
-      ease: "easeInOut", 
-      duration: 0.9, 
+      type: "tween",
+      ease: "easeInOut",
+      duration: 0.9,
     },
   },
 };
@@ -78,12 +78,12 @@ const sideSlideVariants: Variants = {
     x: index === 0 ? -50 : 50,
   }),
   visible: {
-    opacity: 1, 
-    x: 0, 
+    opacity: 1,
+    x: 0,
     transition: {
-      type: "tween", 
-      ease: "easeOut", 
-      duration: 0.6, 
+      type: "tween",
+      ease: "easeOut",
+      duration: 0.6,
     },
   },
 };
@@ -91,16 +91,16 @@ const sideSlideVariants: Variants = {
 // Variantes para el boton (efecto de escala y fade)
 const ctaVariants: Variants = {
   hidden: {
-    opacity: 0, 
+    opacity: 0,
     scale: 0.95,
   },
   visible: {
-    opacity: 1, 
-    scale: 1, 
+    opacity: 1,
+    scale: 1,
     transition: {
-      type: "tween", 
-      ease: [0.25, 0.1, 0.25, 1], 
-      duration: 0.7, 
+      type: "tween",
+      ease: [0.25, 0.1, 0.25, 1],
+      duration: 0.7,
     },
   },
 };
@@ -125,26 +125,28 @@ const MenuSection = ({ menu, isLoading }: MenuSectionProps) => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Encabezado */}
-        <motion.div variants={headerVariants} className="text-center mb-12">
+        <motion.div
+          variants={headerVariants}
+          className="text-center mb-8 sm:mb-10 md:mb-12"
+        >
           <Badge
             variant="secondary"
-            className="mb-3 bg-blue-900 text-blue-100 hover:bg-blue-800"
+            className="mb-2 sm:mb-3 bg-blue-900 text-blue-100 hover:bg-blue-800 text-xs sm:text-sm px-3 sm:px-4 py-1"
           >
-            <CalendarDays className="w-4 h-4 mr-2" />
+            <CalendarDays className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
             Menú Diario
           </Badge>
-          <div className="flex justify-center items-center gap-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-3 sm:gap-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
               <span className="text-blue-400">{menu?.name}</span>
             </h2>
             {menu.price && (
-              <Badge className="bg-green-600 hover:bg-green-500 text-white text-lg px-4 py-1">
+              <Badge className="bg-green-600 hover:bg-green-500 text-white text-sm sm:text-base md:text-lg px-3 sm:px-4 py-0.5 sm:py-1">
                 {menu.price} €
               </Badge>
             )}
           </div>
-          <div className="w-16 h-1 bg-blue-500 mx-auto mb-4 rounded-full"></div>
-          <p className="text-base md:text-lg text-blue-100 max-w-3xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-blue-100 max-w-xl sm:max-w-2xl md:max-w-3xl mx-auto mt-4">
             {menu?.description ??
               "Descubre nuestro menú casero y equilibrado para hoy."}
           </p>
@@ -249,12 +251,11 @@ const DishCard = ({ dish, variant, position }: DishCardProps) => {
     <motion.div
       variants={dishCardVariants}
       className={`flex flex-col ${
-        variant === "right" ? "md:flex-row-reverse" : "md:flex-row"
+        variant === "right" ? "lg:flex-row-reverse" : "lg:flex-row"
       } gap-4`}
     >
-      {/* Contenedor de imagen más pequeño */}
       <motion.div
-        className="md:w-1/3 h-40 relative rounded-lg overflow-hidden shadow-lg group"
+        className="lg:w-1/3 h-40 relative rounded-lg overflow-hidden shadow-lg group"
         style={{ y: yParallax }}
       >
         <motion.div
@@ -266,7 +267,7 @@ const DishCard = ({ dish, variant, position }: DishCardProps) => {
             alt={dish.name}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-500"
-            sizes="(max-width: 768px) 100vw, 30vw"
+            sizes="(max-width: 1024px) 100vw, 30vw"
             onError={(e) => {
               e.currentTarget.src = "/placeholder.jpg";
             }}
@@ -276,7 +277,7 @@ const DishCard = ({ dish, variant, position }: DishCardProps) => {
       </motion.div>
 
       {/* Contenido del plato */}
-      <div className="md:w-2/3 flex flex-col justify-center p-2">
+      <div className="lg:w-2/3 flex flex-col justify-center p-2">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center">
             <span className="text-white text-sm font-bold">{position}</span>
@@ -292,22 +293,22 @@ const DishCard = ({ dish, variant, position }: DishCardProps) => {
           <h4 className="text-sm text-blue-400 font-semibold mb-1">
             Ingredientes:
           </h4>
-          <div className="flex flex-wrap gap-1">
-            {dish.ingredients.slice(0, 5).map((ingredient, index) => (
+          <div className="flex flex-wrap gap-1 sm:gap-2">
+            {dish.ingredients.slice(0, 3).map((ingredient, index) => (
               <Badge
                 key={index}
                 variant="outline"
-                className="text-xs text-blue-300 border-blue-700 bg-blue-900/20"
+                className="text-xs sm:text-sm text-blue-300 border-blue-700 bg-blue-900/20 px-2 sm:px-3 py-0.5"
               >
                 {ingredient}
               </Badge>
             ))}
-            {dish.ingredients.length > 5 && (
+            {dish.ingredients.length > 3 && (
               <Badge
                 variant="outline"
-                className="text-xs border-blue-700 bg-blue-900/20"
+                className="text-xs sm:text-sm border-blue-700 bg-blue-900/20 px-2 sm:px-3 py-0.5 text-blue-300"
               >
-                +{dish.ingredients.length - 5}
+                +{dish.ingredients.length - 3}
               </Badge>
             )}
           </div>
