@@ -1,11 +1,11 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-interface Params {
+interface Context {
   params: { id: string };
 }
 
-export async function GET(request: Request, { params }: Params) {
+export async function GET(request: Request, { params }: Context) {
   try {
     const dishId = Number(params.id);
     const dish = await prisma.dish.findUnique({
