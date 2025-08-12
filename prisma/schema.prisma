@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  dishes    Dish[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Dish {
+  id          Int             @id @default(autoincrement())
+  name        String
+  description String?
+  price       Float
+  category    Category        @relation(fields: [categoryId], references: [id])
+  categoryId  Int
+  imageUrl    String?
+  ingredients String[]
+  dailyMenus  DailyMenuDish[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model DailyMenu {
+  id          Int             @id @default(autoincrement())
+  name        String // Ej: "Menú del Martes"
+  date        DateTime        @unique // Fecha específica del menú
+  description String? // Descripción opcional
+  dishes      DailyMenuDish[] // Platos incluidos en este menú
+  price       Float // Precio del menú 
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
+
+model DailyMenuDish {
+  id          Int       @id @default(autoincrement())
+  dish        Dish      @relation(fields: [dishId], references: [id])
+  dishId      Int
+  dailyMenu   DailyMenu @relation(fields: [dailyMenuId], references: [id])
+  dailyMenuId Int
+  createdAt   DateTime  @default(now())
+
+  @@unique([dishId, dailyMenuId])
+}
