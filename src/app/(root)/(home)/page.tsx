@@ -1,43 +1,23 @@
-"use client";
-
 import AboutSection from "@/components/root/home/AboutSection";
 import ContactSection from "@/components/root/home/ContactSection";
 import EventsSection from "@/components/root/home/EventsSection";
 import GallerySection from "@/components/root/home/GallerySection";
 import HeroSection from "@/components/root/home/HeroSection";
-import MenuSection from "@/components/root/home/menu/MenuSection";
 import ReservationSection from "@/components/root/home/ReservationSection";
-import { useEffect, useState } from "react";
-import { DailyMenu } from "../../../../typing";
 import { getDailyMenu } from "@/lib/dailyMenuapi";
+import MenuSection from "@/components/root/home/menu/MenuSection";
 
-export default function Home() {
-  const [menu, setMenu] = useState<DailyMenu | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export const revalidate = false;
 
-  useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        setIsLoading(true);
-        const data = await getDailyMenu();
-        setMenu(data);
-      } catch (error) {
-        console.error("Error al cargar el menú diario:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchMenu();
-  }, []);
-
+export default async function Home() {
+  const dailyMenu = await getDailyMenu();
   return (
     <>
       <HeroSection />
       <DividerDiamond />
       <AboutSection />
       <DividerDiamond />
-      <MenuSection menu={menu} isLoading={isLoading} />
+      {dailyMenu && <MenuSection menu={dailyMenu} isLoading={false} />}
       <DividerLine />
       <EventsSection />
       <DividerDiamond />
