@@ -24,12 +24,12 @@ const MenuDishCard = ({
   return (
     <motion.div
       variants={dishCardVariants}
-      className={`flex flex-col ${
+      className={`flex flex-col border border-blue-600 rounded-lg overflow-hidden ${
         variant === "right" ? "lg:flex-row-reverse" : "lg:flex-row"
       } gap-4`}
     >
       <motion.div
-        className="lg:w-1/3 h-40 relative rounded-lg overflow-hidden shadow-lg group"
+        className="lg:w-1/3 h-40 lg:h-full aspect-square relative group"
         style={{ y: yParallax }}
       >
         <motion.div
@@ -40,18 +40,14 @@ const MenuDishCard = ({
             src={dish.imageUrl ?? "/placeholder.jpg"}
             alt={dish.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover group-hover:scale-105 transition-transform duration-500 mt-1"
             sizes="(max-width: 1024px) 100vw, 30vw"
-            onError={(e) => {
-              e.currentTarget.src = "/placeholder.jpg";
-            }}
           />
         </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f1a] via-transparent to-transparent opacity-80"></div>
       </motion.div>
 
       {/* Contenido del plato */}
-      <div className="lg:w-2/3 flex flex-col justify-center p-2">
+      <div className="lg:w-2/3 flex flex-col justify-center p-4">
         <div className="flex items-center gap-2 mb-2">
           <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center">
             <span className="text-white text-sm font-bold">{position}</span>
