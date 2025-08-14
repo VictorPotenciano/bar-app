@@ -11,8 +11,8 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Escalonamiento de 0.2s entre hijos
-      delayChildren: 0.3, // Retraso inicial para el grupo
+      staggerChildren: 0.2, 
+      delayChildren: 0.3, 
     },
   },
 };
@@ -48,7 +48,7 @@ const badgeVariants: Variants = {
 const HeroSection = () => {
   // Para parallax en la burbuja
   const { scrollYProgress } = useScroll();
-  const yBubble = useTransform(scrollYProgress, [0, 1], [0, -50]); // Movimiento sutil upward
+  const yBubble = useTransform(scrollYProgress, [0, 1], [0, -50]); 
 
   return (
     <motion.section
